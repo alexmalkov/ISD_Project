@@ -1,0 +1,40 @@
+﻿@model MKSK_Lahjapaja_CIM.Models.contact_person
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>contact_person</legend>
+
+    <div class="display-label">personId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.personId)
+    </div>
+
+    <div class="display-label">fName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fName)
+    </div>
+
+    <div class="display-label">lName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lName)
+    </div>
+
+    <div class="display-label">email</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">phoneNo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.phoneNo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

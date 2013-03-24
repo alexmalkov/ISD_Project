@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MKSK_Lahjapaja_CIM.Models.address>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            town
+        </th>
+        <th>
+            street
+        </th>
+        <th>
+            houseNo
+        </th>
+        <th>
+            postCode
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.town)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.street)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.houseNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.postCode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.addressId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.addressId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.addressId })
+        </td>
+    </tr>
+}
+
+</table>

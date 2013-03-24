@@ -1,0 +1,48 @@
+﻿@model MKSK_Lahjapaja_CIM.Models.contract
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>contract</legend>
+
+    <div class="display-label">creditLimit</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.creditLimit)
+    </div>
+
+    <div class="display-label">discountRate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.discountRate)
+    </div>
+
+    <div class="display-label">way_of_delivery</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.way_of_delivery.text)
+    </div>
+
+    <div class="display-label">term_of_delivery</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.term_of_delivery.text)
+    </div>
+
+    <div class="display-label">payment_disorder</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.payment_disorder.creditabilityCode)
+    </div>
+
+    <div class="display-label">term_of_payment</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.term_of_payment.termOfPaymentId)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
