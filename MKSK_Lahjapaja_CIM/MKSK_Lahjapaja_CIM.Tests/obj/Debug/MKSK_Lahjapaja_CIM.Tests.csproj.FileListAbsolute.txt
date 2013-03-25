@@ -1,8 +1,0 @@
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM.Tests\bin\Debug\MKSK_Lahjapaja_CIM.Tests.dll.config
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM.Tests\bin\Debug\MKSK_Lahjapaja_CIM.Tests.dll
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM.Tests\bin\Debug\MKSK_Lahjapaja_CIM.Tests.pdb
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM.Tests\bin\Debug\MKSK_Lahjapaja_CIM.dll
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM.Tests\bin\Debug\MKSK_Lahjapaja_CIM.pdb
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM.Tests\obj\Debug\MKSK_Lahjapaja_CIM.Tests.csprojResolveAssemblyReference.cache
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM.Tests\obj\Debug\MKSK_Lahjapaja_CIM.Tests.dll
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM.Tests\obj\Debug\MKSK_Lahjapaja_CIM.Tests.pdb

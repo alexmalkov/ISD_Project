@@ -1,0 +1,26 @@
+﻿Alphabetic ID - do we need it???
+
+way of delivery
+terms of delivery
+
+sales (customer site)?????
+date of last sale????
+
+mark for deletion-separate or part of status?
+should the feature to mark for the deletion be available on the main page
+
+
+
+
+
+_______________________
+group id- varchar-change everywhere
+
+Status: -completed
+	-not completed
+	-marked for deletion
+
+
+Deleting useless addresses (useless info)- part of mass deletion
+
+check USE cases and description!!!counters!

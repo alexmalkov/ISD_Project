@@ -1,0 +1,3 @@
+1. Each site should have the oportunity to have a unique term of delivery.
+2. 2 addresses are needed for customer and customer site
+3. Add address to contact person

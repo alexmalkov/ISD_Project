@@ -1,7 +1,0 @@
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM\bin\MKSK_Lahjapaja_CIM.dll
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM\bin\MKSK_Lahjapaja_CIM.pdb
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM\bin\EntityFramework.dll
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM\bin\EntityFramework.xml
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM\obj\Debug\MKSK_Lahjapaja_CIM.csprojResolveAssemblyReference.cache
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM\obj\Debug\MKSK_Lahjapaja_CIM.dll
-C:\Users\malko_000\Dropbox\Study\ISDP\Project\MKSK_Lahjapaja_CIM\MKSK_Lahjapaja_CIM\obj\Debug\MKSK_Lahjapaja_CIM.pdb

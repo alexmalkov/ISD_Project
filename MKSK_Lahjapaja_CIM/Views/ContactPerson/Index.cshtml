@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MKSK_Lahjapaja_CIM.Models.contact_person>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="DataTable">
+<thead>
+    <tr>
+        <th>
+            personId
+        </th>
+        <th>
+            fName
+        </th>
+        <th>
+            lName
+        </th>
+        <th>
+            email
+        </th>
+        <th>
+            phoneNo
+        </th>
+        <th></th>
+    </tr>
+</thead>
+<tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.personId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneNo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.personId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.personId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.personId })
+        </td>
+    </tr>
+}
+</tbody>
+</table>
