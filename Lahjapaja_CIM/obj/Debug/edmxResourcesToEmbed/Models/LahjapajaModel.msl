@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CIM_dbModelStoreContainer" CdmEntityContainer="CIM_dbEntities">
+    <EntitySetMapping Name="addresses">
+      <EntityTypeMapping TypeName="CIM_dbModel.address">
+        <MappingFragment StoreEntitySet="address">
+          <ScalarProperty Name="addressId" ColumnName="addressId" />
+          <ScalarProperty Name="town" ColumnName="town" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="houseNo" ColumnName="houseNo" />
+          <ScalarProperty Name="postCode" ColumnName="postCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contact_person">
+      <EntityTypeMapping TypeName="CIM_dbModel.contact_person">
+        <MappingFragment StoreEntitySet="contact_person">
+          <ScalarProperty Name="personId" ColumnName="personId" />
+          <ScalarProperty Name="addressId" ColumnName="addressId" />
+          <ScalarProperty Name="fName" ColumnName="fName" />
+          <ScalarProperty Name="lName" ColumnName="lName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contracts">
+      <EntityTypeMapping TypeName="CIM_dbModel.contract">
+        <MappingFragment StoreEntitySet="contract">
+          <ScalarProperty Name="contractId" ColumnName="contractId" />
+          <ScalarProperty Name="creditLimit" ColumnName="creditLimit" />
+          <ScalarProperty Name="discountRate" ColumnName="discountRate" />
+          <ScalarProperty Name="paymentDisorderId" ColumnName="paymentDisorderId" />
+          <ScalarProperty Name="termOfPaymentId" ColumnName="termOfPaymentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="CIM_dbModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="groupId" ColumnName="groupId" />
+          <ScalarProperty Name="visitingAddressId" ColumnName="visitingAddressId" />
+          <ScalarProperty Name="postalAddressId" ColumnName="postalAddressId" />
+          <ScalarProperty Name="contactPersonId" ColumnName="contactPersonId" />
+          <ScalarProperty Name="contractId" ColumnName="contractId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customer_group">
+      <EntityTypeMapping TypeName="CIM_dbModel.customer_group">
+        <MappingFragment StoreEntitySet="customer_group">
+          <ScalarProperty Name="groupId" ColumnName="groupId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customer_site">
+      <EntityTypeMapping TypeName="CIM_dbModel.customer_site">
+        <MappingFragment StoreEntitySet="customer_site">
+          <ScalarProperty Name="customerSiteId" ColumnName="customerSiteId" />
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="contactPersonId" ColumnName="contactPersonId" />
+          <ScalarProperty Name="deliveryAddressId" ColumnName="deliveryAddressId" />
+          <ScalarProperty Name="postalAddressId" ColumnName="postalAddressId" />
+          <ScalarProperty Name="contractId" ColumnName="contractId" />
+          <ScalarProperty Name="wayOfDeliveryId" ColumnName="wayOfDeliveryId" />
+          <ScalarProperty Name="termOfDeliveryId" ColumnName="termOfDeliveryId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="payment_disorder">
+      <EntityTypeMapping TypeName="CIM_dbModel.payment_disorder">
+        <MappingFragment StoreEntitySet="payment_disorder">
+          <ScalarProperty Name="paymentDisorderId" ColumnName="paymentDisorderId" />
+          <ScalarProperty Name="creditabilityCode" ColumnName="creditabilityCode" />
+          <ScalarProperty Name="text" ColumnName="text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="term_of_delivery">
+      <EntityTypeMapping TypeName="CIM_dbModel.term_of_delivery">
+        <MappingFragment StoreEntitySet="term_of_delivery">
+          <ScalarProperty Name="termOfDeliveryId" ColumnName="termOfDeliveryId" />
+          <ScalarProperty Name="text" ColumnName="text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="term_of_payment">
+      <EntityTypeMapping TypeName="CIM_dbModel.term_of_payment">
+        <MappingFragment StoreEntitySet="term_of_payment">
+          <ScalarProperty Name="termOfPaymentId" ColumnName="termOfPaymentId" />
+          <ScalarProperty Name="numberOfDaysForPayment" ColumnName="numberOfDaysForPayment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="way_of_delivery">
+      <EntityTypeMapping TypeName="CIM_dbModel.way_of_delivery">
+        <MappingFragment StoreEntitySet="way_of_delivery">
+          <ScalarProperty Name="wayOfDeliveryId" ColumnName="wayOfDeliveryId" />
+          <ScalarProperty Name="text" ColumnName="text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

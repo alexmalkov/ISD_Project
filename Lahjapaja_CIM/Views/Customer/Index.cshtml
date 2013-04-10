@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Lahjapaja_CIM.Models.customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Register new customer", "Create", "Customer", new { @class = "btn btn-success" })
+    @*<button class="btn btn-success" ><i class="icon-plus"></i>Register new customer</button>*@
+</p>
+<table id="DataTable">
+<thead>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Group ID
+        </th>
+        <th>
+            Visiting address
+        </th>
+        <th>
+            Postal address
+        </th>
+        <th>
+            Contact person
+        </th>
+        <th>
+            Contract ID
+        </th>
+        <th>
+            Status
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.groupId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address1.town),
+            @Html.DisplayFor(modelItem => item.address1.street) 
+            @Html.DisplayFor(modelItem => item.address1.houseNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address.town),
+            @Html.DisplayFor(modelItem => item.address.street) 
+            @Html.DisplayFor(modelItem => item.address.houseNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_person.fName)
+            @Html.DisplayFor(modelItem => item.contact_person.lName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contract.contractId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+
+        <div class="btn-group">
+        
+            @Html.ActionLink("Edit", "Edit", new { id = item.customerId }, new {@class="btn btn-primary" }) |
+          <button class="btn btn-info">Details</button>
+          <button class="btn btn-danger"><i class="icon-trash icon-white"></i></button>
+        </div>
+
+            @*@Html.ActionLink("Details", "Details", new { id=item.customerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.customerId })*@
+        </td>
+    </tr>
+}
+</tbody>
+</table>

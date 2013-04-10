@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Lahjapaja_CIM.Models.customer_site>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="DataTable">
+<thead>
+    <tr>
+        <th>
+            customerSiteId
+        </th>
+        <th>
+            customer
+        </th>
+        <th>
+            contact_person
+        </th>
+        <th>
+            address
+        </th>
+        <th>
+            address1
+        </th>
+        <th>
+            contract
+        </th>
+        <th>
+            way_of_delivery
+        </th>
+        <th>
+            term_of_delivery
+        </th>
+        <th>
+            name
+        </th>
+        <th>
+            status
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerSiteId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_person.fName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address.town)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address1.town)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contract.contractId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.way_of_delivery.text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.term_of_delivery.text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+</tbody>
+</table>

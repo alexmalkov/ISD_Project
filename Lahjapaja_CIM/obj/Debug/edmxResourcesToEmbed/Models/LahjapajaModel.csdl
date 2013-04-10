@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CIM_dbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="CIM_dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="addresses" EntityType="CIM_dbModel.address" />
+    <EntitySet Name="contact_person" EntityType="CIM_dbModel.contact_person" />
+    <EntitySet Name="contracts" EntityType="CIM_dbModel.contract" />
+    <EntitySet Name="customers" EntityType="CIM_dbModel.customer" />
+    <EntitySet Name="customer_group" EntityType="CIM_dbModel.customer_group" />
+    <EntitySet Name="customer_site" EntityType="CIM_dbModel.customer_site" />
+    <EntitySet Name="payment_disorder" EntityType="CIM_dbModel.payment_disorder" />
+    <EntitySet Name="term_of_delivery" EntityType="CIM_dbModel.term_of_delivery" />
+    <EntitySet Name="term_of_payment" EntityType="CIM_dbModel.term_of_payment" />
+    <EntitySet Name="way_of_delivery" EntityType="CIM_dbModel.way_of_delivery" />
+    <AssociationSet Name="FK_CP_address" Association="CIM_dbModel.FK_CP_address">
+      <End Role="address" EntitySet="addresses" />
+      <End Role="contact_person" EntitySet="contact_person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CS_deliveryAddress" Association="CIM_dbModel.FK_CS_deliveryAddress">
+      <End Role="address" EntitySet="addresses" />
+      <End Role="customer_site" EntitySet="customer_site" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CS_postalAddress" Association="CIM_dbModel.FK_CS_postalAddress">
+      <End Role="address" EntitySet="addresses" />
+      <End Role="customer_site" EntitySet="customer_site" />
+    </AssociationSet>
+    <AssociationSet Name="FK_customer_postalAddress" Association="CIM_dbModel.FK_customer_postalAddress">
+      <End Role="address" EntitySet="addresses" />
+      <End Role="customer" EntitySet="customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_customer_visitingAddress" Association="CIM_dbModel.FK_customer_visitingAddress">
+      <End Role="address" EntitySet="addresses" />
+      <End Role="customer" EntitySet="customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CS_CP" Association="CIM_dbModel.FK_CS_CP">
+      <End Role="contact_person" EntitySet="contact_person" />
+      <End Role="customer_site" EntitySet="customer_site" />
+    </AssociationSet>
+    <AssociationSet Name="FK_customer_CP" Association="CIM_dbModel.FK_customer_CP">
+      <End Role="contact_person" EntitySet="contact_person" />
+      <End Role="customer" EntitySet="customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_contract_paymentDisorder" Association="CIM_dbModel.FK_contract_paymentDisorder">
+      <End Role="payment_disorder" EntitySet="payment_disorder" />
+      <End Role="contract" EntitySet="contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_contract_termOfPayment" Association="CIM_dbModel.FK_contract_termOfPayment">
+      <End Role="term_of_payment" EntitySet="term_of_payment" />
+      <End Role="contract" EntitySet="contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CS_contract" Association="CIM_dbModel.FK_CS_contract">
+      <End Role="contract" EntitySet="contracts" />
+      <End Role="customer_site" EntitySet="customer_site" />
+    </AssociationSet>
+    <AssociationSet Name="FK_customer_contract" Association="CIM_dbModel.FK_customer_contract">
+      <End Role="contract" EntitySet="contracts" />
+      <End Role="customer" EntitySet="customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CS_C" Association="CIM_dbModel.FK_CS_C">
+      <End Role="customer" EntitySet="customers" />
+      <End Role="customer_site" EntitySet="customer_site" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CS_termOfDelivery" Association="CIM_dbModel.FK_CS_termOfDelivery">
+      <End Role="term_of_delivery" EntitySet="term_of_delivery" />
+      <End Role="customer_site" EntitySet="customer_site" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CS_wayOfDelivery" Association="CIM_dbModel.FK_CS_wayOfDelivery">
+      <End Role="way_of_delivery" EntitySet="way_of_delivery" />
+      <End Role="customer_site" EntitySet="customer_site" />
+    </AssociationSet>
+    <AssociationSet Name="FK_customer_customerGroup" Association="CIM_dbModel.FK_customer_customerGroup">
+      <End Role="customer_group" EntitySet="customer_group" />
+      <End Role="customer" EntitySet="customers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="address">
+    <Key>
+      <PropertyRef Name="addressId" />
+    </Key>
+    <Property Name="addressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="town" Type="String" Nullable="false" MaxLength="35" Unicode="true" FixedLength="false" />
+    <Property Name="street" Type="String" Nullable="false" MaxLength="35" Unicode="true" FixedLength="false" />
+    <Property Name="houseNo" Type="Int32" Nullable="false" />
+    <Property Name="postCode" Type="String" Nullable="false" MaxLength="35" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="contact_person" Relationship="CIM_dbModel.FK_CP_address" FromRole="address" ToRole="contact_person" />
+    <NavigationProperty Name="customer_site" Relationship="CIM_dbModel.FK_CS_deliveryAddress" FromRole="address" ToRole="customer_site" />
+    <NavigationProperty Name="customer_site1" Relationship="CIM_dbModel.FK_CS_postalAddress" FromRole="address" ToRole="customer_site" />
+    <NavigationProperty Name="customers" Relationship="CIM_dbModel.FK_customer_postalAddress" FromRole="address" ToRole="customer" />
+    <NavigationProperty Name="customers1" Relationship="CIM_dbModel.FK_customer_visitingAddress" FromRole="address" ToRole="customer" />
+  </EntityType>
+  <EntityType Name="contact_person">
+    <Key>
+      <PropertyRef Name="personId" />
+    </Key>
+    <Property Name="personId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="addressId" Type="Int32" />
+    <Property Name="fName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="lName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="phoneNo" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="address" Relationship="CIM_dbModel.FK_CP_address" FromRole="contact_person" ToRole="address" />
+    <NavigationProperty Name="customer_site" Relationship="CIM_dbModel.FK_CS_CP" FromRole="contact_person" ToRole="customer_site" />
+    <NavigationProperty Name="customers" Relationship="CIM_dbModel.FK_customer_CP" FromRole="contact_person" ToRole="customer" />
+  </EntityType>
+  <EntityType Name="contract">
+    <Key>
+      <PropertyRef Name="contractId" />
+    </Key>
+    <Property Name="contractId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="creditLimit" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="discountRate" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="paymentDisorderId" Type="Int32" />
+    <Property Name="termOfPaymentId" Type="Int32" />
+    <NavigationProperty Name="payment_disorder" Relationship="CIM_dbModel.FK_contract_paymentDisorder" FromRole="contract" ToRole="payment_disorder" />
+    <NavigationProperty Name="term_of_payment" Relationship="CIM_dbModel.FK_contract_termOfPayment" FromRole="contract" ToRole="term_of_payment" />
+    <NavigationProperty Name="customer_site" Relationship="CIM_dbModel.FK_CS_contract" FromRole="contract" ToRole="customer_site" />
+    <NavigationProperty Name="customers" Relationship="CIM_dbModel.FK_customer_contract" FromRole="contract" ToRole="customer" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="customerId" />
+    </Key>
+    <Property Name="customerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="groupId" Type="Int32" Nullable="false" />
+    <Property Name="visitingAddressId" Type="Int32" Nullable="false" />
+    <Property Name="postalAddressId" Type="Int32" Nullable="false" />
+    <Property Name="contactPersonId" Type="Int32" Nullable="false" />
+    <Property Name="contractId" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="address" Relationship="CIM_dbModel.FK_customer_postalAddress" FromRole="customer" ToRole="address" />
+    <NavigationProperty Name="address1" Relationship="CIM_dbModel.FK_customer_visitingAddress" FromRole="customer" ToRole="address" />
+    <NavigationProperty Name="contact_person" Relationship="CIM_dbModel.FK_customer_CP" FromRole="customer" ToRole="contact_person" />
+    <NavigationProperty Name="contract" Relationship="CIM_dbModel.FK_customer_contract" FromRole="customer" ToRole="contract" />
+    <NavigationProperty Name="customer_site" Relationship="CIM_dbModel.FK_CS_C" FromRole="customer" ToRole="customer_site" />
+    <NavigationProperty Name="customer_group" Relationship="CIM_dbModel.FK_customer_customerGroup" FromRole="customer" ToRole="customer_group" />
+  </EntityType>
+  <EntityType Name="customer_group">
+    <Key>
+      <PropertyRef Name="groupId" />
+    </Key>
+    <Property Name="groupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="customer" Relationship="CIM_dbModel.FK_customer_customerGroup" FromRole="customer_group" ToRole="customer" />
+  </EntityType>
+  <EntityType Name="customer_site">
+    <Key>
+      <PropertyRef Name="customerSiteId" />
+    </Key>
+    <Property Name="customerSiteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customerId" Type="Int32" Nullable="false" />
+    <Property Name="contactPersonId" Type="Int32" Nullable="false" />
+    <Property Name="deliveryAddressId" Type="Int32" Nullable="false" />
+    <Property Name="postalAddressId" Type="Int32" Nullable="false" />
+    <Property Name="contractId" Type="Int32" />
+    <Property Name="wayOfDeliveryId" Type="Int32" />
+    <Property Name="termOfDeliveryId" Type="Int32" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="address" Relationship="CIM_dbModel.FK_CS_deliveryAddress" FromRole="customer_site" ToRole="address" />
+    <NavigationProperty Name="address1" Relationship="CIM_dbModel.FK_CS_postalAddress" FromRole="customer_site" ToRole="address" />
+    <NavigationProperty Name="contact_person" Relationship="CIM_dbModel.FK_CS_CP" FromRole="customer_site" ToRole="contact_person" />
+    <NavigationProperty Name="contract" Relationship="CIM_dbModel.FK_CS_contract" FromRole="customer_site" ToRole="contract" />
+    <NavigationProperty Name="customer" Relationship="CIM_dbModel.FK_CS_C" FromRole="customer_site" ToRole="customer" />
+    <NavigationProperty Name="term_of_delivery" Relationship="CIM_dbModel.FK_CS_termOfDelivery" FromRole="customer_site" ToRole="term_of_delivery" />
+    <NavigationProperty Name="way_of_delivery" Relationship="CIM_dbModel.FK_CS_wayOfDelivery" FromRole="customer_site" ToRole="way_of_delivery" />
+  </EntityType>
+  <EntityType Name="payment_disorder">
+    <Key>
+      <PropertyRef Name="paymentDisorderId" />
+    </Key>
+    <Property Name="paymentDisorderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="creditabilityCode" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
+    <Property Name="text" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="contracts" Relationship="CIM_dbModel.FK_contract_paymentDisorder" FromRole="payment_disorder" ToRole="contract" />
+  </EntityType>
+  <EntityType Name="term_of_delivery">
+    <Key>
+      <PropertyRef Name="termOfDeliveryId" />
+    </Key>
+    <Property Name="termOfDeliveryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="text" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="customer_site" Relationship="CIM_dbModel.FK_CS_termOfDelivery" FromRole="term_of_delivery" ToRole="customer_site" />
+  </EntityType>
+  <EntityType Name="term_of_payment">
+    <Key>
+      <PropertyRef Name="termOfPaymentId" />
+    </Key>
+    <Property Name="termOfPaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numberOfDaysForPayment" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="contracts" Relationship="CIM_dbModel.FK_contract_termOfPayment" FromRole="term_of_payment" ToRole="contract" />
+  </EntityType>
+  <EntityType Name="way_of_delivery">
+    <Key>
+      <PropertyRef Name="wayOfDeliveryId" />
+    </Key>
+    <Property Name="wayOfDeliveryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="text" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="customer_site" Relationship="CIM_dbModel.FK_CS_wayOfDelivery" FromRole="way_of_delivery" ToRole="customer_site" />
+  </EntityType>
+  <Association Name="FK_CP_address">
+    <End Role="address" Type="CIM_dbModel.address" Multiplicity="0..1" />
+    <End Role="contact_person" Type="CIM_dbModel.contact_person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="addressId" />
+      </Principal>
+      <Dependent Role="contact_person">
+        <PropertyRef Name="addressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CS_deliveryAddress">
+    <End Role="address" Type="CIM_dbModel.address" Multiplicity="1" />
+    <End Role="customer_site" Type="CIM_dbModel.customer_site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="addressId" />
+      </Principal>
+      <Dependent Role="customer_site">
+        <PropertyRef Name="deliveryAddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CS_postalAddress">
+    <End Role="address" Type="CIM_dbModel.address" Multiplicity="1" />
+    <End Role="customer_site" Type="CIM_dbModel.customer_site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="addressId" />
+      </Principal>
+      <Dependent Role="customer_site">
+        <PropertyRef Name="postalAddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_customer_postalAddress">
+    <End Role="address" Type="CIM_dbModel.address" Multiplicity="1" />
+    <End Role="customer" Type="CIM_dbModel.customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="addressId" />
+      </Principal>
+      <Dependent Role="customer">
+        <PropertyRef Name="postalAddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_customer_visitingAddress">
+    <End Role="address" Type="CIM_dbModel.address" Multiplicity="1" />
+    <End Role="customer" Type="CIM_dbModel.customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="address">
+        <PropertyRef Name="addressId" />
+      </Principal>
+      <Dependent Role="customer">
+        <PropertyRef Name="visitingAddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CS_CP">
+    <End Role="contact_person" Type="CIM_dbModel.contact_person" Multiplicity="1" />
+    <End Role="customer_site" Type="CIM_dbModel.customer_site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="contact_person">
+        <PropertyRef Name="personId" />
+      </Principal>
+      <Dependent Role="customer_site">
+        <PropertyRef Name="contactPersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_customer_CP">
+    <End Role="contact_person" Type="CIM_dbModel.contact_person" Multiplicity="1" />
+    <End Role="customer" Type="CIM_dbModel.customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="contact_person">
+        <PropertyRef Name="personId" />
+      </Principal>
+      <Dependent Role="customer">
+        <PropertyRef Name="contactPersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_contract_paymentDisorder">
+    <End Role="payment_disorder" Type="CIM_dbModel.payment_disorder" Multiplicity="0..1" />
+    <End Role="contract" Type="CIM_dbModel.contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="payment_disorder">
+        <PropertyRef Name="paymentDisorderId" />
+      </Principal>
+      <Dependent Role="contract">
+        <PropertyRef Name="paymentDisorderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_contract_termOfPayment">
+    <End Role="term_of_payment" Type="CIM_dbModel.term_of_payment" Multiplicity="0..1" />
+    <End Role="contract" Type="CIM_dbModel.contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="term_of_payment">
+        <PropertyRef Name="termOfPaymentId" />
+      </Principal>
+      <Dependent Role="contract">
+        <PropertyRef Name="termOfPaymentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CS_contract">
+    <End Role="contract" Type="CIM_dbModel.contract" Multiplicity="0..1" />
+    <End Role="customer_site" Type="CIM_dbModel.customer_site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="contract">
+        <PropertyRef Name="contractId" />
+      </Principal>
+      <Dependent Role="customer_site">
+        <PropertyRef Name="contractId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_customer_contract">
+    <End Role="contract" Type="CIM_dbModel.contract" Multiplicity="1" />
+    <End Role="customer" Type="CIM_dbModel.customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="contract">
+        <PropertyRef Name="contractId" />
+      </Principal>
+      <Dependent Role="customer">
+        <PropertyRef Name="contractId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CS_C">
+    <End Role="customer" Type="CIM_dbModel.customer" Multiplicity="1" />
+    <End Role="customer_site" Type="CIM_dbModel.customer_site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="customer_site">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CS_termOfDelivery">
+    <End Role="term_of_delivery" Type="CIM_dbModel.term_of_delivery" Multiplicity="0..1" />
+    <End Role="customer_site" Type="CIM_dbModel.customer_site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="term_of_delivery">
+        <PropertyRef Name="termOfDeliveryId" />
+      </Principal>
+      <Dependent Role="customer_site">
+        <PropertyRef Name="termOfDeliveryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CS_wayOfDelivery">
+    <End Role="way_of_delivery" Type="CIM_dbModel.way_of_delivery" Multiplicity="0..1" />
+    <End Role="customer_site" Type="CIM_dbModel.customer_site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="way_of_delivery">
+        <PropertyRef Name="wayOfDeliveryId" />
+      </Principal>
+      <Dependent Role="customer_site">
+        <PropertyRef Name="wayOfDeliveryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_customer_customerGroup">
+    <End Type="CIM_dbModel.customer_group" Role="customer_group" Multiplicity="1" />
+    <End Type="CIM_dbModel.customer" Role="customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer_group">
+        <PropertyRef Name="groupId" />
+      </Principal>
+      <Dependent Role="customer">
+        <PropertyRef Name="groupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

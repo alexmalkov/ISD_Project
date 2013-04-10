@@ -1,0 +1,50 @@
+﻿@model Lahjapaja_CIM.Models.customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>customer</legend>
+
+    <div class="display-label">groupId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.groupId)
+    </div>
+
+    <div class="display-label">address1</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.address1.town)
+    </div>
+
+    <div class="display-label">address</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.address.town)
+    </div>
+
+    <div class="display-label">contact_person</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.contact_person.fName)
+    </div>
+
+    <div class="display-label">contract</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.contract.contractId)
+    </div>
+
+    <div class="display-label">name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+
+    <div class="display-label">status</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.status)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.customerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
