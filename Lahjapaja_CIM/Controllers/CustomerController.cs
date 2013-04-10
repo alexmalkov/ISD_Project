@@ -36,10 +36,14 @@ namespace Lahjapaja_CIM.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.groupId = new SelectList(db.customer_group, "groupId", "name");
             ViewBag.postalAddressId = new SelectList(db.addresses, "addressId", "town");
             ViewBag.visitingAddressId = new SelectList(db.addresses, "addressId", "town");
             ViewBag.contactPersonId = new SelectList(db.contact_person, "personId", "fName");
             ViewBag.contractId = new SelectList(db.contracts, "contractId", "contractId");
+            ViewBag.cred_code = new SelectList(db.payment_disorder, "creditabilityCode", "creditabilityCode");
+            ViewBag.daysForPayment = new SelectList(db.term_of_payment, "numberOfDaysForPayment", "numberOfDaysForPayment");
+            ViewBag.status = new SelectList(db.status, "statusText", "statusText");
             return View();
         } 
 
@@ -55,7 +59,7 @@ namespace Lahjapaja_CIM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
-
+            ViewBag.groupId = new SelectList(db.customer_group, "groupId", "name", customer.groupId);
             ViewBag.postalAddressId = new SelectList(db.addresses, "addressId", "town", customer.postalAddressId);
             ViewBag.visitingAddressId = new SelectList(db.addresses, "addressId", "town", customer.visitingAddressId);
             ViewBag.contactPersonId = new SelectList(db.contact_person, "personId", "fName", customer.contactPersonId);

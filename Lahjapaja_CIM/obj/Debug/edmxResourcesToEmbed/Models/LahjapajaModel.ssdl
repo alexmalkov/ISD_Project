@@ -8,6 +8,7 @@
     <EntitySet Name="customer_group" EntityType="CIM_dbModel.Store.customer_group" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="customer_site" EntityType="CIM_dbModel.Store.customer_site" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="payment_disorder" EntityType="CIM_dbModel.Store.payment_disorder" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="status" EntityType="CIM_dbModel.Store.status" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="term_of_delivery" EntityType="CIM_dbModel.Store.term_of_delivery" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="term_of_payment" EntityType="CIM_dbModel.Store.term_of_payment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="way_of_delivery" EntityType="CIM_dbModel.Store.way_of_delivery" store:Type="Tables" Schema="dbo" />
@@ -43,6 +44,10 @@
       <End Role="address" EntitySet="address" />
       <End Role="customer_site" EntitySet="customer_site" />
     </AssociationSet>
+    <AssociationSet Name="FK_CS_status" Association="CIM_dbModel.Store.FK_CS_status">
+      <End Role="status" EntitySet="status" />
+      <End Role="customer_site" EntitySet="customer_site" />
+    </AssociationSet>
     <AssociationSet Name="FK_CS_termOfDelivery" Association="CIM_dbModel.Store.FK_CS_termOfDelivery">
       <End Role="term_of_delivery" EntitySet="term_of_delivery" />
       <End Role="customer_site" EntitySet="customer_site" />
@@ -65,6 +70,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_customer_postalAddress" Association="CIM_dbModel.Store.FK_customer_postalAddress">
       <End Role="address" EntitySet="address" />
+      <End Role="customer" EntitySet="customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_customer_status" Association="CIM_dbModel.Store.FK_customer_status">
+      <End Role="status" EntitySet="status" />
       <End Role="customer" EntitySet="customer" />
     </AssociationSet>
     <AssociationSet Name="FK_customer_visitingAddress" Association="CIM_dbModel.Store.FK_customer_visitingAddress">
@@ -145,6 +154,12 @@
     <Property Name="paymentDisorderId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="creditabilityCode" Type="nchar" MaxLength="1" />
     <Property Name="text" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="status">
+    <Key>
+      <PropertyRef Name="statusText" />
+    </Key>
+    <Property Name="statusText" Type="nvarchar" Nullable="false" MaxLength="20" />
   </EntityType>
   <EntityType Name="term_of_delivery">
     <Key>
@@ -263,6 +278,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CS_status">
+    <End Role="status" Type="CIM_dbModel.Store.status" Multiplicity="1" />
+    <End Role="customer_site" Type="CIM_dbModel.Store.customer_site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="status">
+        <PropertyRef Name="statusText" />
+      </Principal>
+      <Dependent Role="customer_site">
+        <PropertyRef Name="status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CS_termOfDelivery">
     <End Role="term_of_delivery" Type="CIM_dbModel.Store.term_of_delivery" Multiplicity="0..1" />
     <End Role="customer_site" Type="CIM_dbModel.Store.customer_site" Multiplicity="*" />
@@ -332,6 +359,18 @@
       </Principal>
       <Dependent Role="customer">
         <PropertyRef Name="postalAddressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_customer_status">
+    <End Role="status" Type="CIM_dbModel.Store.status" Multiplicity="1" />
+    <End Role="customer" Type="CIM_dbModel.Store.customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="status">
+        <PropertyRef Name="statusText" />
+      </Principal>
+      <Dependent Role="customer">
+        <PropertyRef Name="status" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

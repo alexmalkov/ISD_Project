@@ -71,6 +71,15 @@
       <End Role="customer_group" EntitySet="customer_group" />
       <End Role="customer" EntitySet="customers" />
     </AssociationSet>
+    <EntitySet Name="status" EntityType="CIM_dbModel.status" />
+    <AssociationSet Name="FK_customer_status" Association="CIM_dbModel.FK_customer_status">
+      <End Role="status" EntitySet="status" />
+      <End Role="customer" EntitySet="customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CS_status" Association="CIM_dbModel.FK_CS_status">
+      <End Role="status" EntitySet="status" />
+      <End Role="customer_site" EntitySet="customer_site" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="address">
     <Key>
@@ -133,6 +142,7 @@
     <NavigationProperty Name="contract" Relationship="CIM_dbModel.FK_customer_contract" FromRole="customer" ToRole="contract" />
     <NavigationProperty Name="customer_site" Relationship="CIM_dbModel.FK_CS_C" FromRole="customer" ToRole="customer_site" />
     <NavigationProperty Name="customer_group" Relationship="CIM_dbModel.FK_customer_customerGroup" FromRole="customer" ToRole="customer_group" />
+    <NavigationProperty Name="status1" Relationship="CIM_dbModel.FK_customer_status" FromRole="customer" ToRole="status" />
   </EntityType>
   <EntityType Name="customer_group">
     <Key>
@@ -163,6 +173,7 @@
     <NavigationProperty Name="customer" Relationship="CIM_dbModel.FK_CS_C" FromRole="customer_site" ToRole="customer" />
     <NavigationProperty Name="term_of_delivery" Relationship="CIM_dbModel.FK_CS_termOfDelivery" FromRole="customer_site" ToRole="term_of_delivery" />
     <NavigationProperty Name="way_of_delivery" Relationship="CIM_dbModel.FK_CS_wayOfDelivery" FromRole="customer_site" ToRole="way_of_delivery" />
+    <NavigationProperty Name="status1" Relationship="CIM_dbModel.FK_CS_status" FromRole="customer_site" ToRole="status" />
   </EntityType>
   <EntityType Name="payment_disorder">
     <Key>
@@ -374,6 +385,38 @@
       </Principal>
       <Dependent Role="customer">
         <PropertyRef Name="groupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="status">
+    <Key>
+      <PropertyRef Name="statusText" />
+    </Key>
+    <Property Type="String" Name="statusText" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="customers" Relationship="CIM_dbModel.FK_customer_status" FromRole="status" ToRole="customer" />
+    <NavigationProperty Name="customer_site" Relationship="CIM_dbModel.FK_CS_status" FromRole="status" ToRole="customer_site" />
+  </EntityType>
+  <Association Name="FK_customer_status">
+    <End Type="CIM_dbModel.status" Role="status" Multiplicity="1" />
+    <End Type="CIM_dbModel.customer" Role="customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="status">
+        <PropertyRef Name="statusText" />
+      </Principal>
+      <Dependent Role="customer">
+        <PropertyRef Name="status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CS_status">
+    <End Type="CIM_dbModel.status" Role="status" Multiplicity="1" />
+    <End Type="CIM_dbModel.customer_site" Role="customer_site" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="status">
+        <PropertyRef Name="statusText" />
+      </Principal>
+      <Dependent Role="customer_site">
+        <PropertyRef Name="status" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -1,2 +1,4 @@
 1. Buttons
-2. Check mock-up
+2. Check mock-up/Michal's GUI
+3. Register customer validation
+4. 

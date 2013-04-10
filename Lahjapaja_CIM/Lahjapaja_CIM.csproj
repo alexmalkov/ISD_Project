@@ -113,6 +113,9 @@
     <Compile Include="Models\payment_disorder.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\status.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\term_of_delivery.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -254,6 +257,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Customer\AddressPartial.cshtml" />
+    <Content Include="Views\Customer\ContactPersonPartial.cshtml" />
+    <Content Include="Views\Customer\ContractPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

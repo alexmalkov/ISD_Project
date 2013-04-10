@@ -19,3 +19,10 @@ C:\Users\malko_000\Desktop\Lahjapaja_CIM_08042013_1552\Lahjapaja_CIM_08042013_15
 C:\Users\malko_000\Desktop\Lahjapaja_CIM_08042013_1552\Lahjapaja_CIM_08042013_1552\Lahjapaja_CIM\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.csprojResolveAssemblyReference.cache
 C:\Users\malko_000\Desktop\Lahjapaja_CIM_08042013_1552\Lahjapaja_CIM_08042013_1552\Lahjapaja_CIM\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.dll
 C:\Users\malko_000\Desktop\Lahjapaja_CIM_08042013_1552\Lahjapaja_CIM_08042013_1552\Lahjapaja_CIM\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.pdb
+C:\GitHub\ISD_Project\Lahjapaja_CIM\bin\Lahjapaja_CIM.dll
+C:\GitHub\ISD_Project\Lahjapaja_CIM\bin\Lahjapaja_CIM.pdb
+C:\GitHub\ISD_Project\Lahjapaja_CIM\bin\EntityFramework.dll
+C:\GitHub\ISD_Project\Lahjapaja_CIM\bin\EntityFramework.xml
+C:\GitHub\ISD_Project\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.csprojResolveAssemblyReference.cache
+C:\GitHub\ISD_Project\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.dll
+C:\GitHub\ISD_Project\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.pdb

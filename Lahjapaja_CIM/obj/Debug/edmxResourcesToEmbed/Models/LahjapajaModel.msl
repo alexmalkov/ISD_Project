@@ -106,5 +106,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="status">
+      <EntityTypeMapping TypeName="CIM_dbModel.status">
+        <MappingFragment StoreEntitySet="status">
+          <ScalarProperty Name="statusText" ColumnName="statusText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

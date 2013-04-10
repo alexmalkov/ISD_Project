@@ -13,6 +13,7 @@
           <EntitySet Name="customer_group" EntityType="CIM_dbModel.Store.customer_group" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="customer_site" EntityType="CIM_dbModel.Store.customer_site" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="payment_disorder" EntityType="CIM_dbModel.Store.payment_disorder" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="status" EntityType="CIM_dbModel.Store.status" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="term_of_delivery" EntityType="CIM_dbModel.Store.term_of_delivery" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="term_of_payment" EntityType="CIM_dbModel.Store.term_of_payment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="way_of_delivery" EntityType="CIM_dbModel.Store.way_of_delivery" store:Type="Tables" Schema="dbo" />
@@ -48,6 +49,10 @@
             <End Role="address" EntitySet="address" />
             <End Role="customer_site" EntitySet="customer_site" />
           </AssociationSet>
+          <AssociationSet Name="FK_CS_status" Association="CIM_dbModel.Store.FK_CS_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="customer_site" EntitySet="customer_site" />
+          </AssociationSet>
           <AssociationSet Name="FK_CS_termOfDelivery" Association="CIM_dbModel.Store.FK_CS_termOfDelivery">
             <End Role="term_of_delivery" EntitySet="term_of_delivery" />
             <End Role="customer_site" EntitySet="customer_site" />
@@ -70,6 +75,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_customer_postalAddress" Association="CIM_dbModel.Store.FK_customer_postalAddress">
             <End Role="address" EntitySet="address" />
+            <End Role="customer" EntitySet="customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customer_status" Association="CIM_dbModel.Store.FK_customer_status">
+            <End Role="status" EntitySet="status" />
             <End Role="customer" EntitySet="customer" />
           </AssociationSet>
           <AssociationSet Name="FK_customer_visitingAddress" Association="CIM_dbModel.Store.FK_customer_visitingAddress">
@@ -150,6 +159,12 @@
           <Property Name="paymentDisorderId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="creditabilityCode" Type="nchar" MaxLength="1" />
           <Property Name="text" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="statusText" />
+          </Key>
+          <Property Name="statusText" Type="nvarchar" Nullable="false" MaxLength="20" />
         </EntityType>
         <EntityType Name="term_of_delivery">
           <Key>
@@ -268,6 +283,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CS_status">
+          <End Role="status" Type="CIM_dbModel.Store.status" Multiplicity="1" />
+          <End Role="customer_site" Type="CIM_dbModel.Store.customer_site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="statusText" />
+            </Principal>
+            <Dependent Role="customer_site">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CS_termOfDelivery">
           <End Role="term_of_delivery" Type="CIM_dbModel.Store.term_of_delivery" Multiplicity="0..1" />
           <End Role="customer_site" Type="CIM_dbModel.Store.customer_site" Multiplicity="*" />
@@ -337,6 +364,18 @@
             </Principal>
             <Dependent Role="customer">
               <PropertyRef Name="postalAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customer_status">
+          <End Role="status" Type="CIM_dbModel.Store.status" Multiplicity="1" />
+          <End Role="customer" Type="CIM_dbModel.Store.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="statusText" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="status" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -427,6 +466,15 @@
             <End Role="customer_group" EntitySet="customer_group" />
             <End Role="customer" EntitySet="customers" />
           </AssociationSet>
+          <EntitySet Name="status" EntityType="CIM_dbModel.status" />
+          <AssociationSet Name="FK_customer_status" Association="CIM_dbModel.FK_customer_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="customer" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CS_status" Association="CIM_dbModel.FK_CS_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="customer_site" EntitySet="customer_site" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="address">
           <Key>
@@ -489,6 +537,7 @@
           <NavigationProperty Name="contract" Relationship="CIM_dbModel.FK_customer_contract" FromRole="customer" ToRole="contract" />
           <NavigationProperty Name="customer_site" Relationship="CIM_dbModel.FK_CS_C" FromRole="customer" ToRole="customer_site" />
           <NavigationProperty Name="customer_group" Relationship="CIM_dbModel.FK_customer_customerGroup" FromRole="customer" ToRole="customer_group" />
+          <NavigationProperty Name="status1" Relationship="CIM_dbModel.FK_customer_status" FromRole="customer" ToRole="status" />
         </EntityType>
         <EntityType Name="customer_group">
           <Key>
@@ -519,6 +568,7 @@
           <NavigationProperty Name="customer" Relationship="CIM_dbModel.FK_CS_C" FromRole="customer_site" ToRole="customer" />
           <NavigationProperty Name="term_of_delivery" Relationship="CIM_dbModel.FK_CS_termOfDelivery" FromRole="customer_site" ToRole="term_of_delivery" />
           <NavigationProperty Name="way_of_delivery" Relationship="CIM_dbModel.FK_CS_wayOfDelivery" FromRole="customer_site" ToRole="way_of_delivery" />
+          <NavigationProperty Name="status1" Relationship="CIM_dbModel.FK_CS_status" FromRole="customer_site" ToRole="status" />
         </EntityType>
         <EntityType Name="payment_disorder">
           <Key>
@@ -733,6 +783,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="statusText" />
+          </Key>
+          <Property Type="String" Name="statusText" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="customers" Relationship="CIM_dbModel.FK_customer_status" FromRole="status" ToRole="customer" />
+          <NavigationProperty Name="customer_site" Relationship="CIM_dbModel.FK_CS_status" FromRole="status" ToRole="customer_site" />
+        </EntityType>
+        <Association Name="FK_customer_status">
+          <End Type="CIM_dbModel.status" Role="status" Multiplicity="1" />
+          <End Type="CIM_dbModel.customer" Role="customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="statusText" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CS_status">
+          <End Type="CIM_dbModel.status" Role="status" Multiplicity="1" />
+          <End Type="CIM_dbModel.customer_site" Role="customer_site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="statusText" />
+            </Principal>
+            <Dependent Role="customer_site">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -804,6 +886,13 @@
             <ScalarProperty Name="wayOfDeliveryId" ColumnName="wayOfDeliveryId" />
             <ScalarProperty Name="text" ColumnName="text" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="status">
+            <EntityTypeMapping TypeName="CIM_dbModel.status">
+              <MappingFragment StoreEntitySet="status">
+                <ScalarProperty Name="statusText" ColumnName="statusText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -818,7 +907,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
@@ -841,22 +930,18 @@
           <ConnectorPoint PointX="3" PointY="7.49974609375" />
         </AssociationConnector>
         <AssociationConnector Association="CIM_dbModel.FK_CS_deliveryAddress" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="8.9417936197916639" />
-          <ConnectorPoint PointX="1.5" PointY="9.4970507812499978" />
-          <ConnectorPoint PointX="3.6666666666666665" PointY="9.4970507812499978" />
-          <ConnectorPoint PointX="3.8333333333333335" PointY="9.4970507812499978" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="9.4970507812499978" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="9.4970507812499978" />
-          <ConnectorPoint PointX="7.5" PointY="9.4970507812499978" />
+          <ConnectorPoint PointX="1.6015631250000002" PointY="8.9417936197916639" />
+          <ConnectorPoint PointX="1.6015631250000002" PointY="9.7855029296875" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="9.7855029296875" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="9.7855029296875" />
+          <ConnectorPoint PointX="7.5" PointY="9.7855029296875" />
         </AssociationConnector>
         <AssociationConnector Association="CIM_dbModel.FK_CS_postalAddress" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.9062525" PointY="8.9417936197916639" />
-          <ConnectorPoint PointX="1.9062525" PointY="9.3828718489583309" />
-          <ConnectorPoint PointX="3.6666666666666665" PointY="9.3828718489583309" />
-          <ConnectorPoint PointX="3.8333333333333335" PointY="9.3828718489583309" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="9.3828718489583309" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="9.3828718489583309" />
-          <ConnectorPoint PointX="7.5" PointY="9.3828718489583309" />
+          <ConnectorPoint PointX="1.9570340625" PointY="8.9417936197916639" />
+          <ConnectorPoint PointX="1.9570340625" PointY="9.7542504296874988" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="9.7542504296874988" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="9.7542504296874988" />
+          <ConnectorPoint PointX="7.5" PointY="9.7542504296874988" />
         </AssociationConnector>
         <AssociationConnector Association="CIM_dbModel.FK_customer_postalAddress" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="6.03125" />
@@ -865,20 +950,22 @@
           <ConnectorPoint PointX="5.25" PointY="6.03125" />
         </AssociationConnector>
         <AssociationConnector Association="CIM_dbModel.FK_customer_visitingAddress" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.0937475" PointY="8.9417936197916639" />
-          <ConnectorPoint PointX="1.0937475" PointY="9.4219355989583313" />
-          <ConnectorPoint PointX="3.6666666666666665" PointY="9.4219355989583313" />
-          <ConnectorPoint PointX="3.8333333333333335" PointY="9.4219355989583313" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="9.4219355989583313" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="9.4219355989583313" />
-          <ConnectorPoint PointX="5.25" PointY="9.4219355989583313" />
+          <ConnectorPoint PointX="1.1445290625000002" PointY="8.9417936197916639" />
+          <ConnectorPoint PointX="1.1445290625000002" PointY="9.294499153556318" />
+          <ConnectorPoint PointX="1.5182297916666669" PointY="9.294499153556318" />
+          <ConnectorPoint PointX="1.6848964583333335" PointY="9.294499153556318" />
+          <ConnectorPoint PointX="1.8737007291666668" PointY="9.294499153556318" />
+          <ConnectorPoint PointX="2.0403673958333335" PointY="9.294499153556318" />
+          <ConnectorPoint PointX="3.6666666666666665" PointY="9.294499153556318" />
+          <ConnectorPoint PointX="3.8333333333333335" PointY="9.294499153556318" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="9.294499153556318" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="9.294499153556318" />
+          <ConnectorPoint PointX="5.25" PointY="9.294499153556318" />
         </AssociationConnector>
         <AssociationConnector Association="CIM_dbModel.FK_CS_CP" ManuallyRouted="false">
           <ConnectorPoint PointX="3.75" PointY="8.8744921875" />
-          <ConnectorPoint PointX="3.75" PointY="9.6016268489583325" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="9.6016268489583325" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="9.6016268489583325" />
-          <ConnectorPoint PointX="7.5" PointY="9.6016268489583325" />
+          <ConnectorPoint PointX="3.75" PointY="9.8167554296875" />
+          <ConnectorPoint PointX="7.5" PointY="9.8167554296875" />
         </AssociationConnector>
         <AssociationConnector Association="CIM_dbModel.FK_customer_CP" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="7.49974609375" />
@@ -895,41 +982,58 @@
         <AssociationConnector Association="CIM_dbModel.FK_contract_termOfPayment" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="10.251152846153847" />
           <ConnectorPoint PointX="4.875" PointY="9.8761528461538468" />
-          <ConnectorPoint PointX="4.875" PointY="1.8748710468749992" />
-          <ConnectorPoint PointX="5.25" PointY="1.8748710468749992" />
+          <ConnectorPoint PointX="4.875" PointY="2.12474609375" />
+          <ConnectorPoint PointX="5.25" PointY="2.12474609375" />
         </AssociationConnector>
         <AssociationConnector Association="CIM_dbModel.FK_CS_contract" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="1.71875" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="1.7187499999999993" />
+          <ConnectorPoint PointX="7.083333333333333" PointY="1.71875" />
           <ConnectorPoint PointX="7.59375" PointY="1.71875" />
           <ConnectorPoint PointX="7.59375" PointY="5.375" />
         </AssociationConnector>
         <AssociationConnector Association="CIM_dbModel.FK_customer_contract" ManuallyRouted="false">
-          <ConnectorPoint PointX="6" PointY="3.4994921874999996" />
-          <ConnectorPoint PointX="6" PointY="5.75" />
+          <ConnectorPoint PointX="5.7070325" PointY="3.4994921874999996" />
+          <ConnectorPoint PointX="5.7070325" PointY="5.75" />
         </AssociationConnector>
         <AssociationConnector Association="CIM_dbModel.FK_CS_C" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="7.5039359244791655" />
-          <ConnectorPoint PointX="7.5" PointY="7.5039359244791655" />
+          <ConnectorPoint PointX="6.75" PointY="7.701650390625" />
+          <ConnectorPoint PointX="7.5" PointY="7.701650390625" />
         </AssociationConnector>
         <AssociationConnector Association="CIM_dbModel.FK_CS_termOfDelivery" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="11.797841796875" />
-          <ConnectorPoint PointX="7.7604141666666671" PointY="11.797841796875" />
-          <ConnectorPoint PointX="7.9270808333333331" PointY="11.797841796875" />
-          <ConnectorPoint PointX="8.25" PointY="11.797841796875" />
-          <ConnectorPoint PointX="8.25" PointY="9.6629036458333317" />
+          <ConnectorPoint PointX="7.8463510416666669" PointY="11.797841796875" />
+          <ConnectorPoint PointX="8.0130177083333329" PointY="11.797841796875" />
+          <ConnectorPoint PointX="8.42187375" PointY="11.797841796875" />
+          <ConnectorPoint PointX="8.42187375" PointY="9.855205078125" />
         </AssociationConnector>
         <AssociationConnector Association="CIM_dbModel.FK_CS_wayOfDelivery" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="14.047841796875" />
-          <ConnectorPoint PointX="7.8437475" PointY="14.047841796875" />
-          <ConnectorPoint PointX="7.8437475" PointY="9.6629036458333317" />
+          <ConnectorPoint PointX="7.929684375" PointY="14.047841796875" />
+          <ConnectorPoint PointX="7.929684375" PointY="9.855205078125" />
         </AssociationConnector>
         <AssociationConnector Association="CIM_dbModel.FK_customer_customerGroup" >
           <ConnectorPoint PointX="7.75" PointY="4.34568359375" />
           <ConnectorPoint PointX="7.6526755650988783" PointY="4.44300802865112" />
           <ConnectorPoint PointX="7.5348244349011209" PointY="4.5608591588488787" />
           <ConnectorPoint PointX="7.375" PointY="4.72068359375" />
-          <ConnectorPoint PointX="6.406252" PointY="4.72068359375" />
-          <ConnectorPoint PointX="6.406252" PointY="5.75" />
+          <ConnectorPoint PointX="6.6194694583333336" PointY="4.7206835937499987" />
+          <ConnectorPoint PointX="6.4528027916666675" PointY="4.72068359375" />
+          <ConnectorPoint PointX="6.2597682500000005" PointY="4.72068359375" />
+          <ConnectorPoint PointX="6.2597682500000005" PointY="5.75" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="CIM_dbModel.status" Width="1.5" PointX="10.375" PointY="0.875" Height="1.5956835937499996" />
+        <AssociationConnector Association="CIM_dbModel.FK_customer_status" >
+          <ConnectorPoint PointX="10.375" PointY="1.2968755" />
+          <ConnectorPoint PointX="7" PointY="1.2968755" />
+          <ConnectorPoint PointX="7" PointY="3.7494921874999996" />
+          <ConnectorPoint PointX="6.5361361250000005" PointY="3.7494921874999996" />
+          <ConnectorPoint PointX="6.5361361250000005" PointY="5.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="CIM_dbModel.FK_CS_status" >
+          <ConnectorPoint PointX="11.125" PointY="2.4706835937499996" />
+          <ConnectorPoint PointX="11.125" PointY="7.6151025390625" />
+          <ConnectorPoint PointX="9" PointY="7.6151025390625" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -24,6 +24,7 @@ namespace Lahjapaja_CIM.Models
     [KnownType(typeof(customer))]
     [KnownType(typeof(term_of_delivery))]
     [KnownType(typeof(way_of_delivery))]
+    [KnownType(typeof(status))]
     public partial class customer_site: IObjectWithChangeTracker, INotifyPropertyChanged
     {
         #region Primitive Properties
@@ -231,6 +232,14 @@ namespace Lahjapaja_CIM.Models
             {
                 if (_status != value)
                 {
+                    ChangeTracker.RecordOriginalValue("status", _status);
+                    if (!IsDeserializing)
+                    {
+                        if (status1 != null && status1.statusText != value)
+                        {
+                            status1 = null;
+                        }
+                    }
                     _status = value;
                     OnPropertyChanged("status");
                 }
@@ -359,6 +368,23 @@ namespace Lahjapaja_CIM.Models
             }
         }
         private way_of_delivery _way_of_delivery;
+    
+        [DataMember]
+        public status status1
+        {
+            get { return _status1; }
+            set
+            {
+                if (!ReferenceEquals(_status1, value))
+                {
+                    var previousValue = _status1;
+                    _status1 = value;
+                    Fixupstatus1(previousValue);
+                    OnNavigationPropertyChanged("status1");
+                }
+            }
+        }
+        private status _status1;
 
         #endregion
         #region ChangeTracking
@@ -445,6 +471,7 @@ namespace Lahjapaja_CIM.Models
             customer = null;
             term_of_delivery = null;
             way_of_delivery = null;
+            status1 = null;
         }
 
         #endregion
@@ -734,6 +761,45 @@ namespace Lahjapaja_CIM.Models
                 if (way_of_delivery != null && !way_of_delivery.ChangeTracker.ChangeTrackingEnabled)
                 {
                     way_of_delivery.StartTracking();
+                }
+            }
+        }
+    
+        private void Fixupstatus1(status previousValue)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.customer_site.Contains(this))
+            {
+                previousValue.customer_site.Remove(this);
+            }
+    
+            if (status1 != null)
+            {
+                if (!status1.customer_site.Contains(this))
+                {
+                    status1.customer_site.Add(this);
+                }
+    
+                status = status1.statusText;
+            }
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("status1")
+                    && (ChangeTracker.OriginalValues["status1"] == status1))
+                {
+                    ChangeTracker.OriginalValues.Remove("status1");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("status1", previousValue);
+                }
+                if (status1 != null && !status1.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    status1.StartTracking();
                 }
             }
         }

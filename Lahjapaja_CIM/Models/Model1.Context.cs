@@ -136,6 +136,12 @@ namespace Lahjapaja_CIM.Models
             get { return _way_of_delivery  ?? (_way_of_delivery = CreateObjectSet<way_of_delivery>("way_of_delivery")); }
         }
         private ObjectSet<way_of_delivery> _way_of_delivery;
+    
+        public ObjectSet<status> status
+        {
+            get { return _status  ?? (_status = CreateObjectSet<status>("status")); }
+        }
+        private ObjectSet<status> _status;
 
         #endregion
     }
