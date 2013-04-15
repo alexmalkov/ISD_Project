@@ -12,10 +12,10 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>customer_site</legend>
+        <legend>Register new customer site</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.customerSiteId)
+            @Html.LabelFor(model => model.customerSiteId, "Customer site ID")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.customerSiteId)
@@ -23,7 +23,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.customerId, "customer")
+            @Html.LabelFor(model => model.customerId, "Customer")
         </div>
         <div class="editor-field">
             @Html.DropDownList("customerId", String.Empty)
@@ -31,15 +31,18 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.contactPersonId, "contact_person")
+            @Html.LabelFor(model => model.contactPersonId, "Contact person")
         </div>
         <div class="editor-field">
             @Html.DropDownList("contactPersonId", String.Empty)
             @Html.ValidationMessageFor(model => model.contactPersonId)
+
+            <button class="btn btn-success" style="margin-bottom:10px"><i class="icon-plus"></i></button>
         </div>
 
+
         <div class="editor-label">
-            @Html.LabelFor(model => model.deliveryAddressId, "address")
+            @Html.LabelFor(model => model.deliveryAddressId, "Delivery address")
         </div>
         <div class="editor-field">
             @Html.DropDownList("deliveryAddressId", String.Empty)
@@ -47,7 +50,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.postalAddressId, "address1")
+            @Html.LabelFor(model => model.postalAddressId, "Postal address")
         </div>
         <div class="editor-field">
             @Html.DropDownList("postalAddressId", String.Empty)
@@ -55,7 +58,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.contractId, "contract")
+            @Html.LabelFor(model => model.contractId, "Contract")
         </div>
         <div class="editor-field">
             @Html.DropDownList("contractId", String.Empty)
@@ -63,7 +66,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.wayOfDeliveryId, "way_of_delivery")
+            @Html.LabelFor(model => model.wayOfDeliveryId, "Way of delivery")
         </div>
         <div class="editor-field">
             @Html.DropDownList("wayOfDeliveryId", String.Empty)
@@ -71,7 +74,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.termOfDeliveryId, "term_of_delivery")
+            @Html.LabelFor(model => model.termOfDeliveryId, "Term of delivery")
         </div>
         <div class="editor-field">
             @Html.DropDownList("termOfDeliveryId", String.Empty)
@@ -79,7 +82,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.name)
+            @Html.LabelFor(model => model.name, "Name")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.name)
@@ -87,7 +90,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.status)
+            @Html.LabelFor(model => model.status, "Status")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.status)
@@ -95,7 +98,7 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Save" class="btn btn-success" />
         </p>
     </fieldset>
 }

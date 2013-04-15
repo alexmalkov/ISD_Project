@@ -30,20 +30,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">@Html.ActionLink("Logo could be here","Index","Home")</a>
+          <a class="brand" href="#">@Html.ActionLink("Lahjapaja logo (->home page)","Index","Home")</a>
+         
           <div class="nav-collapse collapse">
             <ul class="nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Addresses", "Index", "Address")</li>
-                    <li>@Html.ActionLink("Contact persons", "Index", "ContactPerson")</li>
+                    <li>@Html.ActionLink("Contact persons", "Index", "ContactPerson")</li>*@
                     <li>@Html.ActionLink("Customers", "Index", "Customer")</li>
                     <li>@Html.ActionLink("Customer sites", "Index", "CustomerSite")</li>
                 </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
+      
     </div>
-
+    <div class="logindisplay" >
+                @Html.Partial("_LogOnPartial")
+            </div>
+     
     <div class="container">
      @RenderBody()
     </div> <!-- /container -->

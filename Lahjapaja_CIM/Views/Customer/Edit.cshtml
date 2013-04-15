@@ -12,52 +12,10 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>customer</legend>
-
-        @Html.HiddenFor(model => model.customerId)
+        <legend>Updata customer information</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.groupId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.groupId)
-            @Html.ValidationMessageFor(model => model.groupId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.visitingAddressId, "address1")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("visitingAddressId", String.Empty)
-            @Html.ValidationMessageFor(model => model.visitingAddressId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.postalAddressId, "address")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("postalAddressId", String.Empty)
-            @Html.ValidationMessageFor(model => model.postalAddressId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.contactPersonId, "contact_person")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("contactPersonId", String.Empty)
-            @Html.ValidationMessageFor(model => model.contactPersonId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.contractId, "contract")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("contractId", String.Empty)
-            @Html.ValidationMessageFor(model => model.contractId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.name)
+            @Html.LabelFor(model => model.name, "Name")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.name)
@@ -65,19 +23,61 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.status)
+            @Html.LabelFor(model => model.status, "Status")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.status)
             @Html.ValidationMessageFor(model => model.status)
         </div>
 
+        @Html.HiddenFor(model => model.customerId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.groupId, "Group ID")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.groupId)
+            @Html.ValidationMessageFor(model => model.groupId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.visitingAddressId, "Visiting address")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("visitingAddressId", String.Empty)
+            @Html.ValidationMessageFor(model => model.visitingAddressId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.postalAddressId, "Postal address")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("postalAddressId", String.Empty)
+            @Html.ValidationMessageFor(model => model.postalAddressId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.contactPersonId, "Contact person")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("contactPersonId", String.Empty)
+            @Html.ValidationMessageFor(model => model.contactPersonId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.contractId, "Contract ID")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("contractId", String.Empty)
+            @Html.ValidationMessageFor(model => model.contractId)
+        </div>
+
+        
+
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Save" class="btn btn-success" style="margin-right:80px; padding-bottom:5px" />
+
+            @Html.ActionLink("Cancel", "Index", "Customer", new {@class="btn btn-danger"})
         </p>
     </fieldset>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

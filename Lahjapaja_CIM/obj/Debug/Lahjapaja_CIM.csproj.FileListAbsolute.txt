@@ -26,3 +26,17 @@ C:\GitHub\ISD_Project\Lahjapaja_CIM\bin\EntityFramework.xml
 C:\GitHub\ISD_Project\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.csprojResolveAssemblyReference.cache
 C:\GitHub\ISD_Project\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.dll
 C:\GitHub\ISD_Project\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.pdb
+C:\Users\a1103456\Downloads\ISD_Project\ISD_Project\Lahjapaja_CIM\bin\Lahjapaja_CIM.dll
+C:\Users\a1103456\Downloads\ISD_Project\ISD_Project\Lahjapaja_CIM\bin\Lahjapaja_CIM.pdb
+C:\Users\a1103456\Downloads\ISD_Project\ISD_Project\Lahjapaja_CIM\bin\EntityFramework.dll
+C:\Users\a1103456\Downloads\ISD_Project\ISD_Project\Lahjapaja_CIM\bin\EntityFramework.xml
+C:\Users\a1103456\Downloads\ISD_Project\ISD_Project\Lahjapaja_CIM\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\a1103456\Downloads\ISD_Project\ISD_Project\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.dll
+C:\Users\a1103456\Downloads\ISD_Project\ISD_Project\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.pdb
+C:\Users\a1103456\Desktop\Lahjapaja_CIM_11042013_1239\Lahjapaja_CIM\bin\Lahjapaja_CIM.dll
+C:\Users\a1103456\Desktop\Lahjapaja_CIM_11042013_1239\Lahjapaja_CIM\bin\Lahjapaja_CIM.pdb
+C:\Users\a1103456\Desktop\Lahjapaja_CIM_11042013_1239\Lahjapaja_CIM\bin\EntityFramework.dll
+C:\Users\a1103456\Desktop\Lahjapaja_CIM_11042013_1239\Lahjapaja_CIM\bin\EntityFramework.xml
+C:\Users\a1103456\Desktop\Lahjapaja_CIM_11042013_1239\Lahjapaja_CIM\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\a1103456\Desktop\Lahjapaja_CIM_11042013_1239\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.dll
+C:\Users\a1103456\Desktop\Lahjapaja_CIM_11042013_1239\Lahjapaja_CIM\obj\Debug\Lahjapaja_CIM.pdb

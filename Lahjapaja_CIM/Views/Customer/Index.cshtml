@@ -9,9 +9,11 @@
     </p>
 <p>
     @*<button type="button" class="btn btn-primary" data-loading-text="Loading...">Loading state</button>*@
-    @Html.ActionLink("Register new customer", "Create", "Customer", new { @class = "btn btn-success", @type = "button" })
+    @Html.ActionLink("Register new customer", "Create", "Customer", new { @class = "btn btn-success" })
+    
     @*<button class="btn btn-success" ><i class="icon-plus"></i>Register new customer</button>*@
 </p>
+
 <table id="DataTable">
     <thead>
         <tr>
@@ -82,4 +84,8 @@
             </tr>
         }
     </tbody>
+    
 </table>
+<div style="margin-top:50px">
+@Html.ActionLink("Mass deletion", "Delete", "Customer", new { @class = "btn btn-danger" })
+</div>

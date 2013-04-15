@@ -7,40 +7,43 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+&nbsp;
+</p>
+<p>
+    @Html.ActionLink("Register new customer site", "Create", "CustomerSite", new { @class = "btn btn-success" })
 </p>
 <table id="DataTable">
 <thead>
     <tr>
-        <th>
-            customerSiteId
+        <th style="width:5px">
+            Customer site
         </th>
         <th>
-            customer
+            Name
+        </th>
+        @*<th>
+            Status
+        </th>*@
+        <th>
+            Customer name
         </th>
         <th>
-            contact_person
+            Contact person
         </th>
         <th>
-            address
+            Delivery address
+        </th>
+        @*<th>
+            Postal address
+        </th>*@
+       @* <th>
+            Contract ID
+        </th>*@
+        <th>
+            Way of delivery
         </th>
         <th>
-            address1
-        </th>
-        <th>
-            contract
-        </th>
-        <th>
-            way_of_delivery
-        </th>
-        <th>
-            term_of_delivery
-        </th>
-        <th>
-            name
-        </th>
-        <th>
-            status
+            Terms of delivery
         </th>
         <th></th>
     </tr>
@@ -48,24 +51,32 @@
     <tbody>
 @foreach (var item in Model) {
     <tr>
+    
         <td>
             @Html.DisplayFor(modelItem => item.customerSiteId)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.customer.name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.contact_person.fName)
+            @Html.DisplayFor(modelItem => item.contact_person.lName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.address.town)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.address1.town)
-        </td>
-        <td>
+        </td>*@
+        @*<td style="width:5px">
             @Html.DisplayFor(modelItem => item.contract.contractId)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.way_of_delivery.text)
         </td>
@@ -73,15 +84,8 @@
             @Html.DisplayFor(modelItem => item.term_of_delivery.text)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id = item.customerSiteId }, new {@class="btn btn-primary" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.customerSiteId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

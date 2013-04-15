@@ -9,6 +9,7 @@ using Lahjapaja_CIM.Models;
 
 namespace Lahjapaja_CIM.Controllers
 { 
+    [Authorize(Users="admin")]
     public class CustomerController : Controller
     {
         private CIM_dbEntities db = new CIM_dbEntities();

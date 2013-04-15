@@ -8,7 +8,7 @@
 {
     @Html.ValidationSummary(true)
     <fieldset>
-    <fieldset class="span3">
+    <fieldset class="span3" style="margin-left:0px">
     <div class="editor-label">
             @Html.LabelFor(model => model.fName, "First name")
         </div>
@@ -43,7 +43,6 @@
 </fieldset>
 
     <fieldset>
-    <legend style="font-size:medium">Address</legend>
     @{
     Html.RenderPartial("AddressPartial");
         }</fieldset>

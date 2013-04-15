@@ -13,6 +13,7 @@
     <fieldset>
         <legend>New customer registration</legend>
         <fieldset class="span3">
+        <legend>Basic information</legend>
         <div class="editor-label">
             @Html.LabelFor(model => model.name, "Name")
         </div>
@@ -44,7 +45,7 @@
                 }
             </div>
         </fieldset>
-        <fieldset>
+        <fieldset style="style="width:270px"">
             <legend>Postal address</legend>
             <div>
                 @{
@@ -52,15 +53,8 @@
                 }
             </div>
         </fieldset>
-        <fieldset class="span1" style="width:540px">
-        <legend>Contact person</legend>
-        <div>
-        @{
-    Html.RenderPartial("ContactPersonPartial");
-            }
-        </div>
-        </fieldset>
-        <fieldset class="span2">
+
+        <fieldset class="span3">
         <legend>Contract</legend>
         <div>
         @{
@@ -68,9 +62,20 @@
             }
         </div>
         
+        </fieldset>
+
+        <fieldset class="span3" style="width:540px">
+        <legend>Contact person</legend>
+        <div>
+        @{
+    Html.RenderPartial("ContactPersonPartial");
+            }
+        </div>
         <p>
             <input type="submit" class="btn btn-success" value="Submit" style="margin-right:1em"/>
             @Html.ActionLink("Cancel", "Index", "Customer", new {@class="btn btn-danger", @type="button"})
-        </p></fieldset>
+        </p>
+        </fieldset>
+        
     </fieldset>
 }
